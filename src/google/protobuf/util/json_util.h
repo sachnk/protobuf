@@ -59,9 +59,14 @@ struct JsonParseOptions {
   // allow_alias instead.
   bool case_insensitive_enum_parsing;
 
+  // Set maximum recursive depth while parsing JSON. If this value is <= 0,
+  // it fallsback to the default max depth specified in JsonStreamParser
+  int max_recursive_depth;
+
   JsonParseOptions()
       : ignore_unknown_fields(false),
-        case_insensitive_enum_parsing(false) {}
+        case_insensitive_enum_parsing(false),
+        max_recursive_depth(0) {}
 };
 
 struct JsonPrintOptions {

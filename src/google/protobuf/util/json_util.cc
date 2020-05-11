@@ -192,6 +192,10 @@ util::Status JsonToBinaryStream(TypeResolver* resolver,
       resolver, type, &sink, &listener, proto_writer_options);
 
   converter::JsonStreamParser parser(&proto_writer);
+  if (options.max_recursive_depth > 0) {
+    parser.set_max_recursion_depth(options.max_recursive_depth);
+  }
+
   const void* buffer;
   int length;
   while (json_input->Next(&buffer, &length)) {
